@@ -54,7 +54,9 @@ Amazon DynamoDB
 
 ## 📸 Architecture Diagram
 
-> Insert Screenshot Here
+<p align="center">
+  <img src="./Screenshots/1.AWS-Architecture.png" alt="ExpenseTrack Architecture" width="1000">
+</p>
 
 ```text
 screenshots/architecture-diagram.png
