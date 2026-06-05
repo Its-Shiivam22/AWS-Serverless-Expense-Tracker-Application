@@ -26,32 +26,6 @@ The application follows a modern serverless architecture:
 
 ---
 
-# 🏗️ Architecture
-
-```text
-User
- │
- ▼
-CloudFront
- │
- ▼
-Amazon S3
- │
- ▼
-Amazon Cognito
- │
- ▼
-API Gateway (HTTP API)
- │
- ▼
-AWS Lambda
- │
- ▼
-Amazon DynamoDB
-```
-
----
-
 ## 📸 Architecture Diagram
 
 <p align="center">
@@ -59,7 +33,7 @@ Amazon DynamoDB
 </p>
 
 ```text
-screenshots/architecture-diagram.png
+/Screenshots/1.AWS-Architecture.png
 ```
 
 ---
@@ -75,127 +49,8 @@ screenshots/architecture-diagram.png
 - Cognito Managed Login
 - User-Specific Data Isolation
 
----
 
-## 💰 Expense Management
-
-- Add Expense
-- View Expenses
-- Delete Expense
-- Expense Date Tracking
-- Category-wise Expense Management
-
----
-
-## 🏷️ Categories
-
-### Default Categories
-
-- Food & Dining
-- Health & Medicine
-- Entertainment
-- Shopping
-- Travel
-- Bills & Utilities
-- Education
-- Investments
-- Personal Care
-- Others
-
-### Custom Categories
-
-- Add Custom Category
-- Delete Custom Category
-- User-Specific Categories
-
----
-
-## 🔒 Security
-
-- Cognito User Pool Authentication
-- JWT Authorizer
-- HTTPS via CloudFront
-- User-Level Data Isolation
-- Secure API Access
-
----
-
-# ☁️ AWS Services Used
-
-| Service | Purpose |
-|----------|----------|
-| Amazon Cognito | Authentication & Authorization |
-| API Gateway HTTP API | REST API Layer |
-| AWS Lambda | Backend Compute |
-| Amazon DynamoDB | NoSQL Database |
-| Amazon S3 | Static Website Hosting |
-| Amazon CloudFront | CDN & HTTPS |
-| IAM | Permissions & Security |
-| CloudWatch | Monitoring & Logs |
-
----
-
-# 📸 Project Screenshots
-
-## 1. Cognito User Pool
-
-> Insert Screenshot Here
-
-```text
-screenshots/cognito-user-pool.png
-```
-
-### Capture:
-
-- User Pool Overview
-- Region
-- User Pool ID
-
----
-
-## 2. Cognito App Client
-
-> Insert Screenshot Here
-
-```text
-screenshots/cognito-app-client.png
-```
-
-### Capture:
-
-- Client ID
-- Callback URL
-- Logout URL
-
----
-
-## 3. Cognito Managed Login
-
-> Insert Screenshot Here
-
-```text
-screenshots/cognito-managed-login.png
-```
-
----
-
-## 4. JWT Authorizer
-
-> Insert Screenshot Here
-
-```text
-screenshots/jwt-authorizer.png
-```
-
-### Capture:
-
-- Issuer URL
-- Audience
-- Identity Source
-
----
-
-## 5. API Gateway Routes
+## API Gateway Routes
 
 > Insert Screenshot Here
 
@@ -218,33 +73,7 @@ DELETE  /categories/{name}
 
 ---
 
-## 6. API Gateway Integrations
-
-> Insert Screenshot Here
-
-```text
-screenshots/api-integrations.png
-```
-
----
-
-## 7. API Gateway CORS Configuration
-
-> Insert Screenshot Here
-
-```text
-screenshots/api-cors.png
-```
-
-### Capture:
-
-- Allowed Origins
-- Allowed Headers
-- Allowed Methods
-
----
-
-## 8. Lambda Functions
+## Lambda Functions
 
 > Insert Screenshot Here
 
@@ -267,211 +96,18 @@ deleteCategory
 
 ---
 
-## 9. Lambda Function Code
-
-> Insert Screenshot Here
-
-```text
-screenshots/lambda-code.png
-```
-
----
-
-## 10. DynamoDB Expenses Table
-
-> Insert Screenshot Here
-
-```text
-screenshots/dynamodb-expenses.png
-```
-
-### Capture:
-
-```text
-Partition Key = userId
-Sort Key = expenseId
-```
-
----
-
-## 11. DynamoDB Categories Table
-
-> Insert Screenshot Here
-
-```text
-screenshots/dynamodb-categories.png
-```
-
-### Capture:
-
-```text
-Partition Key = userId
-Sort Key = categoryName
-```
-
----
-
-## 12. IAM Role
-
-> Insert Screenshot Here
-
-```text
-screenshots/iam-role.png
-```
-
-### Capture:
-
-- DynamoDB Access
-- CloudWatch Access
-
----
-
-## 13. S3 Bucket Hosting
-
-> Insert Screenshot Here
-
-```text
-screenshots/s3-hosting.png
-```
-
-### Capture:
-
-- Bucket
-- index.html
-- Static Hosting
-
----
-
-## 14. CloudFront Distribution
-
-> Insert Screenshot Here
-
-```text
-screenshots/cloudfront-distribution.png
-```
-
-### Capture:
-
-- Distribution Domain
-- Origin
-
----
-
-## 15. Login Page
-
-> Insert Screenshot Here
-
-```text
-screenshots/login-page.png
-```
-
----
-
-## 16. Dashboard
-
-> Insert Screenshot Here
-
-```text
-screenshots/dashboard.png
-```
-
-### Capture:
-
-- Welcome User
-- Add Expense Form
-- Categories
-
----
-
-## 17. Add Expense
-
-> Insert Screenshot Here
-
-```text
-screenshots/add-expense.png
-```
-
----
-
-## 18. Expense List
-
-> Insert Screenshot Here
-
-```text
-screenshots/expense-list.png
-```
-
----
-
-## 19. Custom Categories
-
-> Insert Screenshot Here
-
-```text
-screenshots/custom-categories.png
-```
-
----
-
 # 🗄️ Database Design
 
 ## Expenses Table
-
-| Attribute | Type |
-|------------|------|
-| userId | String |
-| expenseId | String |
-| title | String |
-| amount | Number |
-| category | String |
-| date | String |
-
-### Primary Key
-
 ```text
 PK = userId
 SK = expenseId
 ```
 
----
-
 ## Categories Table
-
-| Attribute | Type |
-|------------|------|
-| userId | String |
-| categoryName | String |
-
-### Primary Key
-
 ```text
 PK = userId
 SK = categoryName
-```
-
----
-
-# 🔐 Security Architecture
-
-The application uses Amazon Cognito JWT Authentication.
-
-```text
-User Login
-      │
-      ▼
-Amazon Cognito
-      │
-      ▼
-JWT Token
-      │
-      ▼
-API Gateway JWT Authorizer
-      │
-      ▼
-AWS Lambda
-      │
-      ▼
-Amazon DynamoDB
 ```
 
 Each user only accesses records associated with their Cognito User ID (`sub` claim).
