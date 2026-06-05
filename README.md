@@ -11,22 +11,6 @@ A fully serverless expense management application built on AWS that allows users
 
 ---
 
-# 📖 Table of Contents
-
-- Project Overview
-- Architecture
-- Features
-- AWS Services Used
-- Screenshots
-- Database Design
-- Security Architecture
-- Deployment Guide
-- Monitoring
-- Learning Outcomes
-- Author
-
----
-
 # 🚀 Project Overview
 
 ExpenseTrack is a serverless expense management platform where users can securely authenticate using Amazon Cognito and manage their expenses through a responsive web interface.
