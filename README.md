@@ -1,4 +1,4 @@
-<img width="1919" height="937" alt="image" src="https://github.com/user-attachments/assets/cb064fde-730a-4a23-a287-4e91f0051037" /># 💸 Building ExpenseTrack - AWS Serverless Expense Tracker
+# 💸 Building ExpenseTrack - AWS Serverless Expense Tracker
 
 ExpenseTrack is a fully serverless expense management application built on AWS. In this project, we create a secure expense tracking system where users can register, log in, add expenses, view expenses, update expenses, delete expenses, and manage expense categories.
 
@@ -40,6 +40,17 @@ Amazon DynamoDB
 
 ---
 
+# 📸 Architecture Diagram
+
+<p align="center">
+  <img src="./Screenshots/1.AWS-Architecture.png" width="1000">
+</p>
+
+```text
+Screenshots/1.AWS-Architecture.png
+```
+---
+
 # 🧰 AWS Services Used
 
 |     AWS Service    |                   Purpose                                |
@@ -53,52 +64,6 @@ Amazon DynamoDB
 | AWS IAM            | Provides secure service permissions                      |
 | Amazon CloudWatch  | Stores logs for debugging and monitoring                 |
 
----
-
-# ✨ Main Features
-
-## 🔐 Authentication
-- User Registration
-- User Login
-- User Logout
-- JWT Authentication
-- Cognito Hosted UI Login
-- Secure Session Management
-- User-Specific Data Isolation
-
-## 💰 Expense Management
-- Add Expenses
-- View Expenses
-- Update Expenses
-- Delete Expenses
-- Expense Date Tracking
-- Expense Categorization
-
-## 📂 Category Management
-- Add Categories
-- View Categories
-- Delete Categories
-- User-Specific Custom Categories
-
-## ☁️ Cloud Features
-- Fully Serverless Architecture
-- Auto Scaling
-- High Availability
-- HTTPS Delivery
-- CDN Acceleration
-- No Server Management
-
----
-
-# 📸 Architecture Diagram
-
-<p align="center">
-  <img src="./Screenshots/1.AWS-Architecture.png" width="1000">
-</p>
-
-```text
-Screenshots/1.AWS-Architecture.png
-```
 ---
 
 # Step 1: Create Amazon Cognito User Pool
@@ -205,7 +170,7 @@ Cognito Domain
 ### Screenshot
 
 <p align="center">
-  <img src="./Screenshots/2.Cognito-Setup.png" width="1000">
+  <img src="./Screenshots/5.App Client Steup.png" width="1000">
 </p>
 
 ```text
@@ -253,7 +218,7 @@ Example Item:
 ### Screenshot
 
 <p align="center">
-  <img src="./Screenshots/2.Cognito-Setup.png" width="1000">
+  <img src="./Screenshots/6.Expenses Table.png" width="1000">
 </p>
 
 ```text
@@ -293,7 +258,7 @@ Example Item:
 
 ### Screenshot
 <p align="center">
-  <img src="./Screenshots/2.Cognito-Setup.png" width="1000">
+  <img src="./Screenshots/7.Categories Table.png" width="1000">
 </p>
 
 ```text
@@ -307,18 +272,6 @@ Screenshots/dynamodb-categories.png
 AWS Lambda is used as the backend compute layer.
 
 ## Lambda Functions
-
-```text
-addExpense
-getExpenses
-updateExpense
-deleteExpense
-
-addCategory
-getCategories
-deleteCategory
-```
-
 Each Lambda function performs a dedicated task.
 
 ### Expense Operations
@@ -339,7 +292,7 @@ deleteCategory.py
 ```
 
 ### IAM Permissions Required
-
+lambda-expense-role:
 ```text
 dynamodb:PutItem
 dynamodb:GetItem
@@ -348,8 +301,48 @@ dynamodb:UpdateItem
 dynamodb:DeleteItem
 dynamodb:Scan
 ```
+## Create Function
+
+open:
+```text
+https://ap-south-1.console.aws.amazon.com/lambda
+```
+Click
+```text
+Create Function → Author from scratch → Enter Function Name & choose Runtime (Language)
+→ in Additional setting enable Custom execution role and select lambda-expense-role → Create Function
+```
+
+```md
+## Lambda Function Source Code
+
+The source code for all Lambda functions is included in this repository for reference and deployment purposes.
+
+Location:
+
+```text
+code/lambda/
+```
+```text
+after Lambda Function Creation Update the default lambda code in Code Source with our Code
+```
 
 ### Screenshot
+<p align="center">
+  <img src="./Screenshots/8.Create FN.png" width="1000">
+</p>
+
+<p align="center">
+  <img src="./Screenshots/9.FN Created.png" width="1000">
+</p>
+
+<p align="center">
+  <img src="./Screenshots/10.Deployed Fn update.png" width="1000">
+</p>
+
+<p align="center">
+  <img src="./Screenshots/11.Lambda FN.png" width="1000">
+</p>
 
 ```text
 Screenshots/lambda-functions.png
