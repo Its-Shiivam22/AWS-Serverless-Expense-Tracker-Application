@@ -507,6 +507,14 @@ Upload:
 ```text
 index.html
 ```
+
+ <p align="center">
+  <img src="./Screenshots/18.s3.png" width="1000">    
+</p>
+
+```text
+Screenshots/S3.png
+```
 ---
 
 # Step 11: Create CloudFront Distribution
@@ -527,6 +535,27 @@ https://your-cloudfront-domain.cloudfront.net
 
 ### Screenshot
 
+<p align="center">
+  <img src="./Screenshots/19.CF1.png" width="1000">    
+</p>
+
+<p align="center">
+  <img src="./Screenshots/20.CF2.png" width="1000">    
+</p>
+
+<p align="center">
+  <img src="./Screenshots/21.CF3.pngg" width="1000">    
+</p>
+
+<p align="center">
+  <img src="./Screenshots/22.CF.png" width="1000">    
+</p>
+
+<p align="center">
+  <img src="./Screenshots/23.CF.png" width="1000">    
+</p>
+
+
 ```text
 Screenshots/cloudfront-distribution.png
 ```
@@ -536,16 +565,6 @@ Screenshots/cloudfront-distribution.png
 # Step 12: Update Frontend Configuration
 
 Update the following values inside the application:
-
-```javascript
-const COGNITO_DOMAIN = "";
-const CLIENT_ID = "";
-
-const REDIRECT_URI = "";
-const LOGOUT_URI = "";
-
-const API_BASE_URL = "";
-```
 
 Example:
 
@@ -558,6 +577,10 @@ const LOGOUT_URI = "https://your-cloudfront-domain.cloudfront.net";
 
 const API_BASE_URL = "https://your-api-id.execute-api.ap-south-1.amazonaws.com";
 ```
+
+<p align="center">
+  <img src="./Screenshots/24.index.png" width="1000">    
+</p>
 
 ---
 
@@ -602,73 +625,7 @@ Cognito User ID (sub claim)
 
 ---
 
-# 🔒 Security Implementation
-
-Security measures implemented:
-
-- Amazon Cognito Authentication
-- JWT Token Validation
-- HTTPS via CloudFront
-- IAM Least Privilege Access
-- User-Level Data Isolation
-- No Hardcoded Credentials
-- Protected API Routes
-- DynamoDB Access Only Through Lambda
-
----
-
-# 📊 Monitoring and Logging
-
-Amazon CloudWatch is used for:
-
-- Lambda Logs
-- Runtime Monitoring
-- Error Tracking
-- API Debugging
-- Request Monitoring
-
-Common Issues Debugged:
-
-```text
-CORS Errors
-JWT Errors
-Lambda Errors
-API Gateway Errors
-DynamoDB Permission Issues
-```
-
----
-
 # 🛠️ Challenges Faced
-
-## CORS Errors
-
-### Challenge
-
-Frontend requests were blocked by browser security policies.
-
-### Solution
-
-Configured API Gateway CORS settings correctly.
-
----
-
-## JWT Authorizer Configuration
-
-### Challenge
-
-API requests were unauthorized.
-
-### Solution
-
-Configured correct:
-
-```text
-Issuer URL
-Audience
-```
-
----
 
 ## User Data Isolation
 
@@ -682,17 +639,6 @@ Used Cognito User ID (`sub`) as DynamoDB Partition Key.
 
 ---
 
-## API Gateway Configuration
-
-### Challenge
-
-Issues with route integration and authorization.
-
-### Solution
-
-Verified integrations and attached JWT Authorizer to all routes.
-
----
 
 # 💰 Cost Optimization
 
@@ -736,27 +682,9 @@ This project demonstrates hands-on experience with:
 
 ---
 
-# 🚀 Future Enhancements
-
-Planned improvements:
-
-- Expense Analytics Dashboard
-- Monthly Reports
-- Budget Tracking
-- CSV Export
-- PDF Reports
-- Email Notifications
-- Search and Filters
-- Multi-Currency Support
-- Terraform Deployment
-- GitHub Actions CI/CD Pipeline
-- Route 53 Custom Domain
-
----
-
 # 👨‍💻 Author
 
-## Shivam Ikari
+## Shivam Ekale
 
 AWS Certified Solutions Architect – Associate
 
@@ -764,8 +692,8 @@ Cloud & DevOps Engineer
 
 ### Connect With Me
 
-- GitHub: https://github.com/Shiivam22
-- LinkedIn: https://www.linkedin.com/in/shivam-ikari
+- GitHub: https://github.com/Its-Shiivam22
+- LinkedIn: https://www.linkedin.com/in/shiivam22
 - Email: shivamekale07@gmail.com
 
 ---
