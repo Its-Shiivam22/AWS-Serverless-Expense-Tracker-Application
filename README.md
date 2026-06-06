@@ -544,7 +544,7 @@ https://your-cloudfront-domain.cloudfront.net
 </p>
 
 <p align="center">
-  <img src="./Screenshots/21.CF3.pngg" width="1000">    
+  <img src="./Screenshots/21.CF3.png" width="1000">    
 </p>
 
 <p align="center">
@@ -594,7 +594,7 @@ This video demonstrates the working deployment of the **AWS Three-Tier Web Appli
 <h4 align="center"> 📌 Click on the image above to watch the full demo on YouTube. </h4> 
 
 ### 🔍 What this demo shows:
-
+This demo provides a complete walkthrough of the ExpenseTrack application and demonstrates how a fully serverless expense management solution can be built on AWS. The video showcases the user authentication process using Amazon Cognito, including secure login through the Cognito Hosted UI and JWT-based authorization for accessing protected resources. It highlights the core functionalities of the application, such as adding new expenses, managing custom expense categories, viewing expense records, and deleting existing expenses. The demonstration also shows how user data is securely isolated so that each user can only access their own records. In addition, the video illustrates the integration between Amazon API Gateway, AWS Lambda, and Amazon DynamoDB, demonstrating how requests are processed through a serverless backend architecture. Finally, it presents the frontend application hosted on Amazon S3 and delivered securely through Amazon CloudFront, providing an end-to-end overview of the complete ExpenseTrack workflow from authentication to expense management.
 
 
 ## ScreenShots
