@@ -1,192 +1,390 @@
-# 💸 ExpenseTrack - Serverless Expense Tracker on AWS
+<img width="1919" height="937" alt="image" src="https://github.com/user-attachments/assets/cb064fde-730a-4a23-a287-4e91f0051037" /># 💸 Building ExpenseTrack - AWS Serverless Expense Tracker
 
-![AWS](https://img.shields.io/badge/AWS-Serverless-orange)
-![Lambda](https://img.shields.io/badge/AWS-Lambda-yellow)
-![API Gateway](https://img.shields.io/badge/API-Gateway-green)
-![DynamoDB](https://img.shields.io/badge/DynamoDB-NoSQL-blue)
-![Cognito](https://img.shields.io/badge/AWS-Cognito-red)
-![CloudFront](https://img.shields.io/badge/CloudFront-CDN-purple)
+ExpenseTrack is a fully serverless expense management application built on AWS. In this project, we create a secure expense tracking system where users can register, log in, add expenses, view expenses, update expenses, delete expenses, and manage expense categories.
 
-A fully serverless expense management application built on AWS that enables users to securely manage personal expenses through Amazon Cognito authentication. The solution leverages AWS managed services to provide a secure, scalable, highly available, and cost-effective cloud-native architecture without managing any servers.
+This project uses Amazon Cognito for authentication, Amazon API Gateway HTTP API for API management, AWS Lambda for backend logic, Amazon DynamoDB for database storage, Amazon S3 for frontend hosting, and Amazon CloudFront for secure content delivery.
 
 ---
 
-# 🚀 Project Overview
+# 📌 Project Overview
 
-ExpenseTrack is a modern serverless expense management platform where users can:
+ExpenseTrack is designed as a cloud-native serverless application.
 
-- Securely register and log in using Amazon Cognito
-- Add and manage personal expenses
-- Create custom expense categories
-- Update or delete expenses
-- View expense history
-- Access only their own data through JWT-based authorization
-
-The application follows a fully serverless architecture utilizing:
-
-- Amazon Cognito
-- Amazon API Gateway (HTTP API)
-- AWS Lambda
-- Amazon DynamoDB
-- Amazon S3
-- Amazon CloudFront
-- AWS IAM
-- Amazon CloudWatch
-
----
-
-# 🏗️ Architecture Diagram
-
-> Insert Architecture Diagram Screenshot Here
-
-<p align="center">
-  <img src="./Screenshots/1.AWS-Architecture.png" alt="ExpenseTrack Architecture" width="1000">
-</p>
-
-```text
-Screenshots/1.AWS-Architecture.png
-```
+When a user opens the website, CloudFront serves the frontend files from an S3 bucket. The user authenticates through Amazon Cognito. After login, Cognito provides a JWT token. The frontend sends this token with API requests. API Gateway validates the token using a JWT Authorizer and forwards valid requests to Lambda functions. Lambda functions then interact with DynamoDB and return the response back to the frontend.
 
 ---
 
 # 🏗️ Architecture Flow
 
-1. User accesses the application through CloudFront.
-2. CloudFront serves static frontend files from Amazon S3.
-3. User authenticates using Amazon Cognito.
-4. Cognito generates a JWT Access Token.
-5. Frontend sends requests to API Gateway.
-6. API Gateway validates the JWT token using a Cognito JWT Authorizer.
-7. API Gateway invokes Lambda functions.
-8. Lambda performs business logic.
-9. Lambda interacts with DynamoDB.
-10. Response is returned to the frontend.
+```text
+User Browser
+     |
+     v
+Amazon CloudFront
+     |
+     v
+Amazon S3 Static Website
+     |
+     v
+Amazon Cognito Authentication
+     |
+     v
+Amazon API Gateway HTTP API
+     |
+     v
+AWS Lambda Functions
+     |
+     v
+Amazon DynamoDB
+```
 
 ---
 
-# ✨ Features
+# 🧰 AWS Services Used
+
+|     AWS Service    |                   Purpose                                |
+|------------------- |----------------------------------------------------------|
+| Amazon Cognito     | User registration, login, logout, and JWT authentication |
+| Amazon API Gateway | Exposes secured HTTP API endpoints                       |
+| AWS Lambda         | Runs backend business logic                              |
+| Amazon DynamoDB    | Stores expenses and categories                           |
+| Amazon S3          | Hosts frontend static files                              |
+| Amazon CloudFront  | Provides CDN, HTTPS, and secure delivery                 |
+| AWS IAM            | Provides secure service permissions                      |
+| Amazon CloudWatch  | Stores logs for debugging and monitoring                 |
+
+---
+
+# ✨ Main Features
 
 ## 🔐 Authentication
-
 - User Registration
 - User Login
 - User Logout
 - JWT Authentication
-- Cognito Hosted Login
+- Cognito Hosted UI Login
 - Secure Session Management
 - User-Specific Data Isolation
 
 ## 💰 Expense Management
-
 - Add Expenses
 - View Expenses
 - Update Expenses
 - Delete Expenses
-- Track Expense Amounts
-- Track Expense Dates
+- Expense Date Tracking
+- Expense Categorization
 
 ## 📂 Category Management
-
-- Create Categories
+- Add Categories
 - View Categories
 - Delete Categories
-- Custom User Categories
+- User-Specific Custom Categories
 
 ## ☁️ Cloud Features
-
-- Serverless Architecture
+- Fully Serverless Architecture
 - Auto Scaling
-- Fully Managed Services
+- High Availability
 - HTTPS Delivery
 - CDN Acceleration
-- High Availability
+- No Server Management
 
 ---
 
-# 📸 Application Screenshots
+# 📸 Architecture Diagram
 
-## Login Page
-
-> Insert Screenshot Here
+<p align="center">
+  <img src="./Screenshots/1.AWS-Architecture.png" width="1000">
+</p>
 
 ```text
-Screenshots/login-page.png
+Screenshots/1.AWS-Architecture.png
 ```
-
 ---
 
-## Dashboard
-
-> Insert Screenshot Here
-
-```text
-Screenshots/dashboard.png
-```
-
----
-
-## Add Expense
-
-> Insert Screenshot Here
-
-```text
-Screenshots/add-expense.png
-```
-
----
-
-## Expense List
-
-> Insert Screenshot Here
-
-```text
-Screenshots/expense-list.png
-```
-
----
-
-# 🔐 Authentication Architecture
+# Step 1: Create Amazon Cognito User Pool
 
 Amazon Cognito is used to manage user authentication and authorization.
 
-### Authentication Flow
+It handles:
 
-1. User logs in through Cognito Hosted UI.
-2. Cognito validates credentials.
-3. Cognito issues JWT Access Token.
-4. Frontend stores token.
-5. Token is sent in Authorization header.
-6. API Gateway validates JWT.
-7. Authorized requests invoke Lambda functions.
+- User Registration
+- User Login
+- User Logout
+- Token Generation
+- Session Management
+
+## Create User Pool
+
+Open:
+
+```text
+https://console.aws.amazon.com/cognito/
+```
+
+Click:
+
+```text
+Create User Pool
+```
+```text
+Select Single Page Application
+& give It A name
+```
+
+Configure:
+
+```text
+Sign-in Options:
+Email
+& Enable Self-Sign in Option
+```
+Create the User Pool.
+
+Save:
+```text
+User Pool ID & Client ID
+```
+
+### Screenshot
+
+<p align="center">
+  <img src="./Screenshots/2.Cognito-Setup.png" width="1000">
+</p>
+
+<p align="center">
+  <img src="./Screenshots/3.UserID.png" width="1000">
+</p>
+
+<p align="center">
+  <img src="./Screenshots/4.ClientID.png" width="1000">
+</p>
+
+```text
+Screenshots/2.cognito-user-pool.png
+```
 
 ---
 
-# 🌐 API Gateway Configuration
+# Step 2: Create Cognito App Client
 
-## API Gateway Type
+The App Client allows the frontend application to communicate with Cognito.
 
+## Configure App Client
+
+OAuth Flow:
 ```text
-Amazon API Gateway HTTP API
+Authorization Code Grant
 ```
 
-HTTP APIs were selected because they provide:
+OAuth Scopes:
+
+```text
+openid
+email
+profile
+```
+
+Callback URL:
+
+```text
+https://your-cloudfront-domain.cloudfront.net
+```
+
+Logout URL:
+
+```text
+https://your-cloudfront-domain.cloudfront.net
+```
+CallBack & Logout Url's will be added after creating Cloudfront Distribution
+
+Save:
+```text
+Cognito Domain
+```
+
+### Screenshot
+
+<p align="center">
+  <img src="./Screenshots/2.Cognito-Setup.png" width="1000">
+</p>
+
+```text
+Screenshots/3.cognito-app-client.png
+```
+
+---
+
+# Step 3: Create DynamoDB Tables
+
+ExpenseTrack uses two DynamoDB tables.
+
+## Expenses Table
+
+Table Name:
+```text
+Expenses
+```
+
+Partition Key:
+
+```text
+userId
+```
+
+Sort Key:
+
+```text
+expenseId
+```
+
+Example Item:
+
+```json
+{
+  "userId": "abc123",
+  "expenseId": "exp001",
+  "Tittle": "Lunch",
+  "amount": 500,
+  "category": "Food",
+  "date": "2026-06-01"
+}
+```
+
+### Screenshot
+
+<p align="center">
+  <img src="./Screenshots/2.Cognito-Setup.png" width="1000">
+</p>
+
+```text
+Screenshots/dynamodb-expenses.png
+```
+
+---
+
+## Categories Table
+
+Table Name:
+
+```text
+Categories
+```
+
+Partition Key:
+
+```text
+userId
+```
+
+Sort Key:
+
+```text
+categoryName
+```
+
+Example Item:
+
+```json
+{
+  "userId": "abc123",
+  "categoryName": "Lonavala Trip"
+}
+```
+
+### Screenshot
+<p align="center">
+  <img src="./Screenshots/2.Cognito-Setup.png" width="1000">
+</p>
+
+```text
+Screenshots/dynamodb-categories.png
+```
+
+---
+
+# Step 4: Create Lambda Functions
+
+AWS Lambda is used as the backend compute layer.
+
+## Lambda Functions
+
+```text
+addExpense
+getExpenses
+updateExpense
+deleteExpense
+
+addCategory
+getCategories
+deleteCategory
+```
+
+Each Lambda function performs a dedicated task.
+
+### Expense Operations
+
+```text
+addExpense.py
+getExpenses.py
+updateExpense.py
+deleteExpense.py
+```
+
+### Category Operations
+
+```text
+addCategory.py
+getCategories.py
+deleteCategory.py
+```
+
+### IAM Permissions Required
+
+```text
+dynamodb:PutItem
+dynamodb:GetItem
+dynamodb:Query
+dynamodb:UpdateItem
+dynamodb:DeleteItem
+dynamodb:Scan
+```
+
+### Screenshot
+
+```text
+Screenshots/lambda-functions.png
+```
+
+---
+
+# Step 5: Create HTTP API Gateway
+
+Amazon API Gateway is used to expose backend APIs.
+
+API Type:
+
+```text
+HTTP API
+```
+
+Why HTTP API?
 
 - Lower Cost
 - Lower Latency
 - Native JWT Authorizer Support
-- Simplified Configuration
+- Simpler Configuration
+
+Create API:
+
+```text
+ExpenseTrack-API
+```
 
 ---
 
-## API Routes
+# Step 6: Create API Routes
 
-> Insert Screenshot Here
-
-```text
-Screenshots/api-routes.png
-```
-
-### Expense Routes
+## Expense Routes
 
 ```text
 GET     /expenses
@@ -195,7 +393,7 @@ PUT     /expenses/{id}
 DELETE  /expenses/{id}
 ```
 
-### Category Routes
+## Category Routes
 
 ```text
 GET     /categories
@@ -203,208 +401,29 @@ POST    /categories
 DELETE  /categories/{name}
 ```
 
----
-
-# ⚙️ Lambda Functions
-
-> Insert Screenshot Here
+### Screenshot
 
 ```text
-Screenshots/lambda-functions.png
-```
-
-### Expense Functions
-
-```text
-addExpense
-getExpenses
-updateExpense
-deleteExpense
-```
-
-### Category Functions
-
-```text
-addCategory
-getCategories
-deleteCategory
+Screenshots/api-routes.png
 ```
 
 ---
 
-# 🗄️ Database Design
+# Step 7: Create Lambda Integrations
 
-Amazon DynamoDB is used as the application's NoSQL database.
+Attach the appropriate Lambda function to each API route.
 
----
+| Method | Route | Lambda |
+|----------|----------|----------|
+| GET | /expenses | getExpenses |
+| POST | /expenses | addExpense |
+| PUT | /expenses/{id} | updateExpense |
+| DELETE | /expenses/{id} | deleteExpense |
+| GET | /categories | getCategories |
+| POST | /categories | addCategory |
+| DELETE | /categories/{name} | deleteCategory |
 
-## Expenses Table
-
-### Primary Key
-
-```text
-PK = userId
-SK = expenseId
-```
-
-### Example Record
-
-```json
-{
-  "userId": "12345",
-  "expenseId": "exp001",
-  "amount": 500,
-  "category": "Food",
-  "description": "Lunch",
-  "date": "2026-06-01"
-}
-```
-
----
-
-## Categories Table
-
-### Primary Key
-
-```text
-PK = userId
-SK = categoryName
-```
-
-### Example Record
-
-```json
-{
-  "userId": "12345",
-  "categoryName": "Food"
-}
-```
-
----
-
-## Data Isolation
-
-Each user's data is isolated using:
-
-```text
-Cognito User ID (sub claim)
-```
-
-Users can only access records belonging to their own account.
-
----
-
-# 🔒 Security
-
-The application follows AWS security best practices.
-
-### Security Controls
-
-- Amazon Cognito Authentication
-- JWT Validation via API Gateway
-- HTTPS via CloudFront
-- User-Level Data Isolation
-- IAM Least Privilege Access
-- No Hardcoded Credentials
-- Secure Backend APIs
-- Private DynamoDB Access through Lambda
-
----
-
-# 🚀 Deployment Guide
-
-## Step 1 — Create Cognito User Pool
-
-Create an Amazon Cognito User Pool.
-
-> Insert Screenshot Here
-
-```text
-Screenshots/cognito-user-pool.png
-```
-
----
-
-## Step 2 — Create App Client
-
-Configure:
-
-```text
-OAuth Flow:
-Authorization Code Grant
-
-Scopes:
-openid
-email
-profile
-```
-
-> Insert Screenshot Here
-
-```text
-Screenshots/cognito-app-client.png
-```
-
----
-
-## Step 3 — Create DynamoDB Tables
-
-### Expenses Table
-
-```text
-Partition Key:
-userId
-
-Sort Key:
-expenseId
-```
-
-### Categories Table
-
-```text
-Partition Key:
-userId
-
-Sort Key:
-categoryName
-```
-
-> Insert Screenshot Here
-
-```text
-Screenshots/dynamodb-expenses.png
-```
-
-```text
-Screenshots/dynamodb-categories.png
-```
-
----
-
-## Step 4 — Create Lambda Functions
-
-Create:
-
-```text
-addExpense
-getExpenses
-updateExpense
-deleteExpense
-
-addCategory
-getCategories
-deleteCategory
-```
-
-Assign IAM permissions for DynamoDB access.
-
----
-
-## Step 5 — Create HTTP API Gateway
-
-Configure routes and Lambda integrations.
-
-> Insert Screenshot Here
+### Screenshot
 
 ```text
 Screenshots/api-integrations.png
@@ -412,21 +431,25 @@ Screenshots/api-integrations.png
 
 ---
 
-## Step 6 — Configure JWT Authorizer
+# Step 8: Configure JWT Authorizer
 
-### Issuer
+JWT Authorizer protects API routes from unauthorized access.
+
+Issuer URL:
 
 ```text
 https://cognito-idp.<region>.amazonaws.com/<user_pool_id>
 ```
 
-### Audience
+Audience:
 
 ```text
 <App Client ID>
 ```
 
-> Insert Screenshot Here
+Attach the JWT Authorizer to all routes.
+
+### Screenshot
 
 ```text
 Screenshots/jwt-authorizer.png
@@ -434,25 +457,22 @@ Screenshots/jwt-authorizer.png
 
 ---
 
-## Step 7 — Configure CORS
+# Step 9: Configure CORS
 
-### Allowed Origins
+Allowed Origins:
 
 ```text
 https://your-cloudfront-domain.cloudfront.net
 ```
 
-### Allowed Headers
+Allowed Headers:
 
 ```text
 authorization
 content-type
-x-amz-date
-x-api-key
-x-amz-security-token
 ```
 
-### Allowed Methods
+Allowed Methods:
 
 ```text
 GET
@@ -464,7 +484,7 @@ OPTIONS
 
 ---
 
-## Step 8 — Upload Frontend to S3
+# Step 10: Upload Frontend to Amazon S3
 
 Upload:
 
@@ -472,15 +492,27 @@ Upload:
 index.html
 ```
 
-Enable Static Website Hosting.
+Enable Static Website Hosting if required.
 
 ---
 
-## Step 9 — Create CloudFront Distribution
+# Step 11: Create CloudFront Distribution
 
-Use the S3 bucket as origin.
+Use the S3 bucket as the origin.
 
-> Insert Screenshot Here
+CloudFront provides:
+
+- HTTPS
+- CDN
+- Faster Global Delivery
+
+Example URL:
+
+```text
+https://your-cloudfront-domain.cloudfront.net
+```
+
+### Screenshot
 
 ```text
 Screenshots/cloudfront-distribution.png
@@ -488,9 +520,9 @@ Screenshots/cloudfront-distribution.png
 
 ---
 
-## Step 10 — Update Frontend Configuration
+# Step 12: Update Frontend Configuration
 
-Replace values in:
+Update the following values inside the application:
 
 ```javascript
 const COGNITO_DOMAIN = "";
@@ -502,72 +534,126 @@ const LOGOUT_URI = "";
 const API_BASE_URL = "";
 ```
 
+Example:
+
+```javascript
+const COGNITO_DOMAIN = "https://your-domain.auth.ap-south-1.amazoncognito.com";
+const CLIENT_ID = "your-app-client-id";
+
+const REDIRECT_URI = "https://your-cloudfront-domain.cloudfront.net";
+const LOGOUT_URI = "https://your-cloudfront-domain.cloudfront.net";
+
+const API_BASE_URL = "https://your-api-id.execute-api.ap-south-1.amazonaws.com";
+```
+
 ---
 
-# 📊 Monitoring & Logging
+# Step 13: Test the Application
+
+Open:
+
+```text
+https://your-cloudfront-domain.cloudfront.net
+```
+
+Test:
+
+1. User Registration
+2. User Login
+3. Add Expense
+4. View Expense
+5. Update Expense
+6. Delete Expense
+7. Add Category
+8. Delete Category
+9. Logout
+
+---
+
+# Step 14: Verify DynamoDB Records
+
+Verify that data is being stored correctly.
+
+Check:
+
+```text
+Expenses Table
+Categories Table
+```
+
+Ensure that records are stored using:
+
+```text
+Cognito User ID (sub claim)
+```
+
+---
+
+# 🔒 Security Implementation
+
+Security measures implemented:
+
+- Amazon Cognito Authentication
+- JWT Token Validation
+- HTTPS via CloudFront
+- IAM Least Privilege Access
+- User-Level Data Isolation
+- No Hardcoded Credentials
+- Protected API Routes
+- DynamoDB Access Only Through Lambda
+
+---
+
+# 📊 Monitoring and Logging
 
 Amazon CloudWatch is used for:
 
 - Lambda Logs
-- Runtime Errors
+- Runtime Monitoring
+- Error Tracking
 - API Debugging
-- Request Tracking
-- Performance Monitoring
+- Request Monitoring
 
-Benefits:
+Common Issues Debugged:
 
-- Centralized Logging
-- Error Troubleshooting
-- Operational Visibility
-
----
-
-# 💰 Cost Optimization
-
-This project was designed with cost efficiency in mind.
-
-### Cost Saving Services
-
-- AWS Lambda (Pay-per-use)
-- DynamoDB On-Demand
-- API Gateway HTTP API
-- Amazon S3
-- CloudFront
-
-### Benefits
-
-- No EC2 Servers
-- No Load Balancers
-- No Database Administration
-- No Infrastructure Maintenance
-
-This architecture significantly reduces operational costs while remaining highly scalable.
+```text
+CORS Errors
+JWT Errors
+Lambda Errors
+API Gateway Errors
+DynamoDB Permission Issues
+```
 
 ---
 
 # 🛠️ Challenges Faced
 
-## JWT Authentication
+## CORS Errors
 
 ### Challenge
 
-Configuring Cognito authentication with API Gateway.
+Frontend requests were blocked by browser security policies.
 
 ### Solution
 
-Configured API Gateway JWT Authorizer using Cognito User Pool Issuer URL and App Client ID.
+Configured API Gateway CORS settings correctly.
 
 ---
 
-## CORS Configuration
+## JWT Authorizer Configuration
 
 ### Challenge
 
-Frontend requests blocked by browser CORS policies.
+API requests were unauthorized.
 
 ### Solution
 
-Configured HTTP API CORS settings and Lambda response headers.
+Configured correct:
+
+```text
+Issuer URL
+Audience
+```
 
 ---
 
@@ -575,21 +661,56 @@ Configured HTTP API CORS settings and Lambda response headers.
 
 ### Challenge
 
-Preventing users from viewing each other's expenses.
+Ensuring users cannot access each other's expenses.
 
 ### Solution
 
-Used Cognito User ID (`sub`) as DynamoDB partition key.
+Used Cognito User ID (`sub`) as DynamoDB Partition Key.
+
+---
+
+## API Gateway Configuration
+
+### Challenge
+
+Issues with route integration and authorization.
+
+### Solution
+
+Verified integrations and attached JWT Authorizer to all routes.
+
+---
+
+# 💰 Cost Optimization
+
+Serverless architecture minimizes infrastructure cost.
+
+Services Used:
+
+- AWS Lambda
+- API Gateway HTTP API
+- DynamoDB
+- Amazon Cognito
+- Amazon S3
+- Amazon CloudFront
+
+Benefits:
+
+- No EC2 Instances
+- No Load Balancers
+- No Server Maintenance
+- Pay-per-Use Pricing
+- Automatic Scaling
 
 ---
 
 # 🎯 Learning Outcomes
 
-This project demonstrates practical experience with:
+This project demonstrates hands-on experience with:
 
 - Amazon Cognito
 - JWT Authentication
-- Amazon API Gateway
+- API Gateway HTTP APIs
 - AWS Lambda
 - Amazon DynamoDB
 - Amazon S3
@@ -597,64 +718,26 @@ This project demonstrates practical experience with:
 - AWS IAM
 - Amazon CloudWatch
 - Serverless Architecture
-- Security Best Practices
-- Event-Driven Computing
+- Secure API Design
 - Cloud-Native Application Development
 
 ---
 
 # 🚀 Future Enhancements
 
-Planned improvements include:
+Planned improvements:
 
 - Expense Analytics Dashboard
-- Monthly Expense Reports
+- Monthly Reports
 - Budget Tracking
 - CSV Export
 - PDF Reports
 - Email Notifications
-- Search Functionality
-- Expense Filters
+- Search and Filters
 - Multi-Currency Support
-- Infrastructure as Code (Terraform)
-- CI/CD Pipeline with GitHub Actions
-
----
-
-# 📂 Repository Structure
-
-```text
-ExpenseTrack/
-│
-├── index.html
-├── README.md
-│
-├── lambda/
-│   ├── addExpense.py
-│   ├── getExpenses.py
-│   ├── updateExpense.py
-│   ├── deleteExpense.py
-│   ├── addCategory.py
-│   ├── getCategories.py
-│   └── deleteCategory.py
-│
-├── architecture/
-│   └── architecture-diagram.png
-│
-└── screenshots/
-    ├── cognito-user-pool.png
-    ├── cognito-app-client.png
-    ├── jwt-authorizer.png
-    ├── api-routes.png
-    ├── api-integrations.png
-    ├── dynamodb-expenses.png
-    ├── dynamodb-categories.png
-    ├── cloudfront-distribution.png
-    ├── dashboard.png
-    ├── login-page.png
-    ├── add-expense.png
-    └── expense-list.png
-```
+- Terraform Deployment
+- GitHub Actions CI/CD Pipeline
+- Route 53 Custom Domain
 
 ---
 
@@ -676,14 +759,6 @@ Cloud & DevOps Engineer
 
 # ⭐ Support
 
-If you found this project useful, consider giving it a ⭐ on GitHub.
+If you found this project helpful, consider giving it a ⭐ on GitHub.
 
 It helps others discover the project and supports future improvements.
-
----
-
-## 📜 License
-
-This project is intended for educational and portfolio purposes.
-
-Feel free to fork, learn, and build upon it.
