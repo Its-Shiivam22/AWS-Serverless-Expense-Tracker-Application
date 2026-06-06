@@ -583,46 +583,49 @@ const API_BASE_URL = "https://your-api-id.execute-api.ap-south-1.amazonaws.com";
 </p>
 
 ---
+## 🎥 Application DEMO Video: 
+This video demonstrates the working deployment of the **AWS Three-Tier Web Application**, showcasing end-to-end connectivity between the frontend, backend, and database layers.
 
-# Step 13: Test the Application
+<p align="center">
+  <a href="https://youtu.be/6Iom2RHtXs8">
+    <img src="./Images/29.Preview5.png" width="700">
+  </a>
+</p>
+<h4 align="center"> 📌 Click on the image above to watch the full demo on YouTube.</h4> 
 
-Open:
+### 🔍 What this demo shows:
 
-```text
-https://your-cloudfront-domain.cloudfront.net
-```
 
-Test:
 
-1. User Registration
-2. User Login
-3. Add Expense
-4. View Expense
-5. Update Expense
-6. Delete Expense
-7. Add Category
-8. Delete Category
-9. Logout
+## ScreenShots
 
----
+<p align="center">
+  <img src="./Screenshots/25.Preview1.png" width="1000">    
+</p>
 
-# Step 14: Verify DynamoDB Records
+<p align="center">
+  <img src="./Screenshots/26.Preview2.png" width="1000">    
+</p>
 
-Verify that data is being stored correctly.
+<p align="center">
+  <img src="./Screenshots/27.Preview3.png" width="1000">    
+</p>
 
-Check:
+<p align="center">
+  <img src="./Screenshots/28.Preview4.png" width="1000">    
+</p>
 
-```text
-Expenses Table
-Categories Table
-```
+<p align="center">
+  <img src="./Screenshots/29.Preview5.png" width="1000">    
+</p>
 
-Ensure that records are stored using:
+<p align="center">
+  <img src="./Screenshots/30.Preview6.png" width="1000">    
+</p>
 
-```text
-Cognito User ID (sub claim)
-```
-
+<p align="center">
+  <img src="./Screenshots/31.Users.png" width="1000">    
+</p>
 ---
 
 # 🛠️ Challenges Faced
