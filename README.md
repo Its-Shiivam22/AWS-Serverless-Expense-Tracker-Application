@@ -588,10 +588,10 @@ This video demonstrates the working deployment of the **AWS Three-Tier Web Appli
 
 <p align="center">
   <a href="https://youtu.be/6Iom2RHtXs8">
-    <img src="./Images/29.Preview5.png" width="700">
+    <img src="./Screenshots/29.Preview5.png" width="700">
   </a>
 </p>
-<h4 align="center"> 📌 Click on the image above to watch the full demo on YouTube.</h4> 
+<h4 align="center"> 📌 Click on the image above to watch the full demo on YouTube. </h4> 
 
 ### 🔍 What this demo shows:
 
