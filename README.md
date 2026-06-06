@@ -312,7 +312,9 @@ Click
 Create Function → Author from scratch → Enter Function Name & choose Runtime (Language)
 → in Additional setting enable Custom execution role and select lambda-expense-role → Create Function
 ```
-
+```text
+after Lambda Function Creation Update the default lambda code in Code Source with our Code → Deploy
+```
 ```md
 ## Lambda Function Source Code
 
@@ -322,9 +324,6 @@ Location:
 
 ```text
 code/lambda/
-```
-```text
-after Lambda Function Creation Update the default lambda code in Code Source with our Code
 ```
 
 ### Screenshot
@@ -352,10 +351,10 @@ Screenshots/lambda-functions.png
 
 # Step 5: Create HTTP API Gateway
 
-Amazon API Gateway is used to expose backend APIs.
+An API Gateway is used to define a single, centralized entry point that manages, secures, and routes traffic between client applications and backend Services. 
+Instead of forcing a client to communicate directly with dozens of separate internal services, the API Gateway acts as a reverse proxy to present a unified API interface.
 
 API Type:
-
 ```text
 HTTP API
 ```
@@ -369,8 +368,11 @@ Why HTTP API?
 
 Create API:
 
+<p align="center">
+  <img src="./Screenshots/12.APi.png" width="1000">
+</p>
 ```text
-ExpenseTrack-API
+ExpenseTrack-APP
 ```
 
 ---
@@ -378,7 +380,6 @@ ExpenseTrack-API
 # Step 6: Create API Routes
 
 ## Expense Routes
-
 ```text
 GET     /expenses
 POST    /expenses
@@ -387,7 +388,6 @@ DELETE  /expenses/{id}
 ```
 
 ## Category Routes
-
 ```text
 GET     /categories
 POST    /categories
@@ -395,6 +395,10 @@ DELETE  /categories/{name}
 ```
 
 ### Screenshot
+
+<p align="center">
+  <img src="./Screenshots/13.Routes.png" width="1000">
+</p>
 
 ```text
 Screenshots/api-routes.png
@@ -406,18 +410,21 @@ Screenshots/api-routes.png
 
 Attach the appropriate Lambda function to each API route.
 
-| Method | Route | Lambda |
-|----------|----------|----------|
-| GET | /expenses | getExpenses |
-| POST | /expenses | addExpense |
-| PUT | /expenses/{id} | updateExpense |
-| DELETE | /expenses/{id} | deleteExpense |
-| GET | /categories | getCategories |
-| POST | /categories | addCategory |
+| Method |        Route       |     Lambda     | 
+|--------|--------------------|----------------|
+| GET    | /expenses          | getExpenses    |
+| POST   | /expenses          | addExpense     |
+| PUT    | /expenses/{id}     | updateExpense  |
+| DELETE | /expenses/{id}     | deleteExpense  |
+| GET    | /categories        | getCategories  |
+| POST   | /categories        | addCategory    |
 | DELETE | /categories/{name} | deleteCategory |
 
 ### Screenshot
 
+<p align="center">
+  <img src="./Screenshots/14.Integrations.png" width="1000">
+</p>
 ```text
 Screenshots/api-integrations.png
 ```
@@ -444,6 +451,13 @@ Attach the JWT Authorizer to all routes.
 
 ### Screenshot
 
+<p align="center">
+  <img src="./Screenshots/15.Cognito-Auth.png" width="1000">
+</p>
+
+ <p align="center">
+  <img src="./Screenshots/16.JWT AUTH.png" width="1000">    
+</p>
 ```text
 Screenshots/jwt-authorizer.png
 ```
@@ -474,7 +488,14 @@ PUT
 DELETE
 OPTIONS
 ```
+ 
+ <p align="center">
+  <img src="./Screenshots/17.CORS.png" width="1000">    
+</p>
 
+```text
+Screenshots/Cors.png
+```
 ---
 
 # Step 10: Upload Frontend to Amazon S3
@@ -484,9 +505,6 @@ Upload:
 ```text
 index.html
 ```
-
-Enable Static Website Hosting if required.
-
 ---
 
 # Step 11: Create CloudFront Distribution
