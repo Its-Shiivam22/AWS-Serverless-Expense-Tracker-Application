@@ -371,6 +371,7 @@ Create API:
 <p align="center">
   <img src="./Screenshots/12.APi.png" width="1000">
 </p>
+
 ```text
 ExpenseTrack-APP
 ```
@@ -425,6 +426,7 @@ Attach the appropriate Lambda function to each API route.
 <p align="center">
   <img src="./Screenshots/14.Integrations.png" width="1000">
 </p>
+
 ```text
 Screenshots/api-integrations.png
 ```
