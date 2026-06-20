@@ -20,28 +20,14 @@ This project demonstrates a complete cloud-native serverless application using m
 
 ---
 
-## 🏗️ Architecture Flow
+## 📸 Architecture Diagram
+
+<p align="center">
+  <img src="./Screenshots/1.AWS-Architecture.png" width="1000">
+</p>
 
 ```text
-User Browser
-     |
-     v
-Amazon CloudFront
-     |
-     v
-Amazon S3 Static Website
-     |
-     v
-Amazon Cognito Authentication
-     |
-     v
-Amazon API Gateway HTTP API
-     |
-     v
-AWS Lambda Functions
-     |
-     v
-Amazon DynamoDB
+Screenshots/1.AWS-Architecture.png
 ```
 
 ---
@@ -90,18 +76,6 @@ Lambda Reads/Writes Data in DynamoDB
         |
         v
 Response is Returned to Frontend
-```
-
----
-
-## 📸 Architecture Diagram
-
-<p align="center">
-  <img src="./Screenshots/1.AWS-Architecture.png" width="1000">
-</p>
-
-```text
-Screenshots/1.AWS-Architecture.png
 ```
 
 ---
