@@ -345,7 +345,7 @@ Deploy
 </p>
 
 <p align="center">
-  <img src=".Screenshots/10.Deployed Fn update.png" width="1000">
+  <img src="./Screenshots/10.Deployed Fn update.png" width="1000">
 </p>
 
 <p align="center">
