@@ -743,23 +743,6 @@ This project demonstrates hands-on experience with:
 
 ---
 
-# 🧹 Cleanup
-
-To avoid unnecessary AWS billing:
-
-```text
-Delete CloudFront distribution
-Delete S3 bucket files
-Delete API Gateway HTTP API
-Delete Lambda functions
-Delete DynamoDB tables
-Delete Cognito User Pool
-Delete IAM roles created for Lambda
-Review CloudWatch logs
-```
-
----
-
 # 📜 License
 
 This project is licensed under the **MIT License**.
