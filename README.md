@@ -208,14 +208,6 @@ Logout URL:
 https://your-cloudfront-domain.cloudfront.net
 ```
 
-Save:
-
-```text
-Cognito Domain
-```
-
-### Screenshot
-
 <p align="center">
   <img src="./Screenshots/5.App Client Steup.png" width="1000">
 </p>
@@ -346,10 +338,14 @@ Update code
 Deploy
 ```
 
-### Screenshot
+### Screenshots
 
 <p align="center">
   <img src="./Screenshots/8.Create FN.png" width="1000">
+</p>
+
+<p align="center">
+  <img src=".Screenshots/10.Deployed Fn update.png" width="1000">
 </p>
 
 <p align="center">
@@ -389,9 +385,6 @@ Create:
 HTTP API
 API Name: ExpenseTrack-APP
 ```
-
-### Screenshot
-
 <p align="center">
   <img src="./Screenshots/12.APi.png" width="1000">
 </p>
@@ -417,8 +410,6 @@ POST    /categories
 DELETE  /categories/{name}
 ```
 
-### Screenshot
-
 <p align="center">
   <img src="./Screenshots/13.Routes.png" width="1000">
 </p>
@@ -436,8 +427,6 @@ DELETE  /categories/{name}
 | GET | `/categories` | `getCategories` |
 | POST | `/categories` | `addCategory` |
 | DELETE | `/categories/{name}` | `deleteCategory` |
-
-### Screenshot
 
 <p align="center">
   <img src="./Screenshots/14.Integrations.png" width="1000">
@@ -465,7 +454,7 @@ Audience:
 
 Attach the authorizer to all protected routes.
 
-### Screenshot
+### Screenshots
 
 <p align="center">
   <img src="./Screenshots/15.Cognito-Auth.png" width="1000">
@@ -502,8 +491,6 @@ DELETE
 OPTIONS
 ```
 
-### Screenshot
-
 <p align="center">
   <img src="./Screenshots/17.CORS.png" width="1000">
 </p>
@@ -525,8 +512,6 @@ Upload:
 ```text
 index.html
 ```
-
-### Screenshot
 
 <p align="center">
   <img src="./Screenshots/18.s3.png" width="1000">
@@ -553,7 +538,7 @@ Example URL:
 https://your-cloudfront-domain.cloudfront.net
 ```
 
-### Screenshot
+### Screenshots
 
 <p align="center">
   <img src="./Screenshots/19.CF1.png" width="1000">
@@ -578,8 +563,6 @@ const LOGOUT_URI = "https://your-cloudfront-domain.cloudfront.net";
 
 const API_BASE_URL = "https://your-api-id.execute-api.ap-south-1.amazonaws.com";
 ```
-
-### Screenshot
 
 <p align="center">
   <img src="./Screenshots/24.index.png" width="1000">
