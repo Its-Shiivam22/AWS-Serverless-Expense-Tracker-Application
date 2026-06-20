@@ -100,7 +100,10 @@ Response is Returned to Frontend
 ```text
 ExpenseTrack-AWS-Serverless-Expense-Tracker/
 │
-├── code/
+├── Code/
+│   ├──Application
+│   │  └──undex,html 
+│   │
 │   └── lambda/
 │       ├── addExpense.py
 │       ├── getExpenses.py
@@ -110,13 +113,13 @@ ExpenseTrack-AWS-Serverless-Expense-Tracker/
 │       ├── getCategories.py
 │       └── deleteCategory.py
 │
-├── frontend/
-│   └── index.html
-│
 ├── Screenshots/
-├── README.md
+│       ├── 1.AWS-Architecture.png
+│       ├── 2.Cognito-Setup.png
+│       └── ...       
+│    
 ├── LICENSE
-└── .gitignore
+└── README.md
 ```
 
 ---
@@ -157,18 +160,15 @@ Enable Self Sign-up
 Create User Pool
 ```
 
-Save:
-
-```text
-User Pool ID
-Client ID
-```
-
-### Screenshot
-
 <p align="center">
   <img src="./Screenshots/2.Cognito-Setup.png" width="1000">
 </p>
+
+Save:
+```text
+User Pool ID
+App Client ID
+```
 
 <p align="center">
   <img src="./Screenshots/3.UserID.png" width="1000">
@@ -212,7 +212,6 @@ Save:
 
 ```text
 Cognito Domain
-App Client ID
 ```
 
 ### Screenshot
@@ -253,21 +252,6 @@ Partition Key: userId
 Sort Key: expenseId
 ```
 
-Example item:
-
-```json
-{
-  "userId": "abc123",
-  "expenseId": "exp001",
-  "title": "Lunch",
-  "amount": 500,
-  "category": "Food",
-  "date": "2026-06-01"
-}
-```
-
-### Screenshot
-
 <p align="center">
   <img src="./Screenshots/6.Expenses Table.png" width="1000">
 </p>
@@ -288,17 +272,6 @@ Keys:
 Partition Key: userId
 Sort Key: categoryName
 ```
-
-Example item:
-
-```json
-{
-  "userId": "abc123",
-  "categoryName": "Travel"
-}
-```
-
-### Screenshot
 
 <p align="center">
   <img src="./Screenshots/7.Categories Table.png" width="1000">
